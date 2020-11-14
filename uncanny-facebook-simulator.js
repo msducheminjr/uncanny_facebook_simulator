@@ -1,4 +1,6 @@
-// https://github.com/msducheminjr/node_getting_started/1-getting-started/2-timers/uncanny-facebook-simulator.js
+const gitHubRepo = 'https://github.com/msducheminjr/uncanny_facebook_simulator';
+console.log('Welcome to the Facebook feed simulator!');
+console.log('Source code can be found at\n' + gitHubRepo + '\n\n');
 const calcInterval = function(multiplier) {
   multiplier = multiplier * 1000;
   result = Math.random() * multiplier;
@@ -28,12 +30,32 @@ const addToChaos = function(fbMessage, frequencyModifier) {
   );
 }
 
-console.log('Facebook be like')
-setInterval(
-  () => console.log('HaVe YoU ReGiStErEd To VoTe?'),
-  2400
+// start with annoying voter registration string
+let annoyingVotingString = 'HaVe YoU ReGiStErEd To VoTe?';
+
+// switch to post-election propaganda widget at some point in the future
+setTimeout(
+  () => {
+    console.log('*'.repeat(80));
+    console.log('    THE ELECTION IS OVER. TIME TO CHANGE OUR ANNOYING VOTER PROPAGANDA');
+    console.log("    WE CAN'T ALLOW ANYBODY TO EXPRESS A POLITICAL OPINION WITHOUT");
+    console.log("    ADDING A PROPAGANDA WIDGET TO EVERY POST");
+    console.log('*'.repeat(80));
+    // keep the old annoying string around but not as frequent
+    addToChaos(annoyingVotingString, 35);
+    annoyingVotingString = 'SeE tHe ReSuLtS aNd OtHeR iNfO aBoUt ThE eLeCtIoN!';
+  },
+  calcInterval(60)
 );
 
+console.log('Facebook be like')
+// Add the annoyingVoting string with a short interval and ability to change
+setInterval(
+  () => console.log(annoyingVotingString),
+  calcInterval(2)
+);
+
+// Build the rest of the feed by adding messages to the chaos!
 addToChaos(
   'Partially false information:\n' +
   '(Checked by independent fact checkers who agree with Facebook about everything)',
