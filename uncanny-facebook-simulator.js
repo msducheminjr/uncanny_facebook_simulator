@@ -107,3 +107,6 @@ addToChaos(
   "(I'll be back in a month...)",
   114
 );
+
+addToChaos('Conversation entirely in animated GIFs', 119);
+
